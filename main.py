@@ -462,8 +462,9 @@ class Menu(Screen):
 
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
-sm.add_widget(Statistical_Calculator(name="Statistical_Calculator"))     
 sm.add_widget(Menu(name="Menu"))     
+sm.add_widget(Statistical_Calculator(name="Statistical_Calculator"))     
+
 sm.current = "Homepage"   
 
 
