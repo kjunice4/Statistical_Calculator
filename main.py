@@ -21,7 +21,7 @@ Builder.load_string("""
         Button:
             background_normal: "KSquared_Logo.png"
             on_release:
-                app.root.current = "Statistical_Calculator"
+                app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
                 
         Button:
@@ -31,9 +31,78 @@ Builder.load_string("""
             height: 200
             text: "KSquared Statistical Calculator"
             on_release:
-                app.root.current = "Statistical_Calculator"
+                app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
 
+""")
+
+#Menu
+Builder.load_string("""
+<Menu>:
+    id: Menu
+    name: "Menu"
+    
+    ScrollView:
+        name: "Scroll"
+        do_scroll_x: False
+        do_scroll_y: True
+    
+        GridLayout:
+            cols: 1
+            padding:10
+            spacing:10
+            size_hint: 1, None
+            width:200
+            height: self.minimum_height
+            
+            Label:
+                font_size: 75
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                text: "Menu"
+            
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 1 , 1
+                size_hint_y: None
+                height:400
+                text: "Statistical Calculator"
+                on_release:
+                    app.root.current = "Statistical_Calculator"
+                    root.manager.transition.direction = "left" 
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Visit KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Other apps from KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/subscribe')   
+                
+                
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Donate to KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/about-ksquared')
+                
+                    
+            
 """)
 
 #Percentage_Calculator
@@ -72,14 +141,15 @@ Builder.load_string("""
                 height: self.minimum_height 
 
                 Button:
-                    text: "Clear Entry"   
+                    text: "Menu"   
                     font_size: 75
                     size_hint_y: None
                     height: 200
+                    background_color: 0, 0 , 1 , 1
                     padding: 10, 10
                     on_release:
-                        entry.text = ""
-                        perc.text = ""
+                        app.root.current = "Menu"
+                        root.manager.transition.direction = "right" 
                         
                 Button:
                     id: steps
@@ -99,7 +169,7 @@ Builder.load_string("""
                 text: entry.text
                 hint_text: "Enter a group of numbers seperated by a comma"
                 multiline: False
-                font_size: 75
+                font_size: 50
                 size_hint_y: None
                 height: 200
                 padding: 10
@@ -117,17 +187,37 @@ Builder.load_string("""
                     list_of_steps.clear_widgets() 
                     Statistical_Calculator.mmm(entry.text)    
                 
-            Button:
-                id: sd
-                text: "Standard Deviation"   
-                font_size: 75
+            BoxLayout:
+                cols: 2
+                padding:10
+                spacing:10
+                size_hint: 1, None
+                width:300
                 size_hint_y: None
-                background_color: 0, 0 , 1 , 1
-                height: 200
-                padding: 10, 10
-                on_release:
-                    list_of_steps.clear_widgets() 
-                    Statistical_Calculator.sd(entry.text)  
+                height: self.minimum_height 
+                    
+                TextInput:
+                    id: dev
+                    text: dev.text
+                    hint_text: "1,2 or 3 Deviations"
+                    multiline: False
+                    font_size: 60
+                    size_hint_y: None
+                    height: 200
+                    padding: 10
+                    input_filter: lambda text, from_undo: text[:1 - len(perc.text)] 
+                    
+                Button:
+                    id: sd
+                    text: "Standard Deviation"   
+                    font_size: 75
+                    size_hint_y: None
+                    background_color: 0, 0 , 1 , 1
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        list_of_steps.clear_widgets() 
+                        Statistical_Calculator.sd(entry.text + "&" + dev.text)  
                     
             Button:
                 id: var
@@ -155,7 +245,7 @@ Builder.load_string("""
                     text: perc.text
                     hint_text: "Enter nth Percentile"
                     multiline: False
-                    font_size: 100
+                    font_size: 60
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -196,7 +286,8 @@ class Statistical_Calculator(Screen):
     def set_previous_screen(self):
         if sm.current != "Homepage":
             sm.transition.direction = 'right'
-            sm.current = sm.previous()    
+            sm.current = "Menu"   
+            
     layouts = []
     def mmm(self,entry):
         layout = GridLayout(cols=1,size_hint_y= None)
@@ -204,6 +295,8 @@ class Statistical_Calculator(Screen):
         self.layouts.append(layout)
 
         try:
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = 60, size_hint_y= None, height=100))
+
             entry_list = entry.split(",")
             print("entry_list",entry_list)
             
@@ -254,7 +347,18 @@ class Statistical_Calculator(Screen):
         self.layouts.append(layout)
 
         try:
-            entry_list = entry.split(",")
+            amp = entry.find("&")
+            print("amp:",amp)
+            
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:amp].replace(" ","").replace(",",", ") ,font_size = 60, size_hint_y= None, height=100))
+            
+            dev = entry[amp+1:]
+            print("dev:",dev)
+            
+            if dev == "":
+                dev = 1
+            
+            entry_list = entry[:amp].split(",")
             print("entry_list",entry_list)
             
             i=0
@@ -262,10 +366,30 @@ class Statistical_Calculator(Screen):
                 entry_list[i] = float(entry_list[i])
                 i = i + 1
             
-            SD = str(numpy.std(entry_list))
-            print("SD",SD)
+            if int(dev) == 1:
+                SD = entry_list
+                SD = str(numpy.std(SD))
+                print("SD",SD)
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
+    
+            elif int(dev) == 2:
+                SD = entry_list
+                SD = str(float(numpy.mean(entry_list)) + 2 * float(numpy.std(SD)))
+                print("SD",SD)
+                self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
+
             
-            self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
+            elif int(dev) == 3:
+                SD = entry_list
+                SD = str(float(numpy.mean(entry_list)) + 3 * float(numpy.std(SD)))
+                print("SD",SD)
+                self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
+
+                
+            elif int(dev) > 3:
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between 1, 2 or 3" ,font_size = 60, size_hint_y= None, height=100))
+                self.layouts.append(layout)
+                
         except Exception:
             self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
             self.layouts.append(layout)
@@ -276,6 +400,9 @@ class Statistical_Calculator(Screen):
         self.layouts.append(layout)
 
         try:
+
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = 60, size_hint_y= None, height=100))
+
             entry_list = entry.split(",")
             print("entry_list",entry_list)
             
@@ -298,9 +425,12 @@ class Statistical_Calculator(Screen):
         self.layouts.append(layout)
 
         try:
+
             print("entry",entry)
             percent = entry.find("%")
             print("percent",percent)
+            
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:percent].replace(" ","").replace(",",", ") ,font_size = 60, size_hint_y= None, height=100))
             
             nth = int(entry[percent+1:])
             print("nth",nth)
@@ -327,9 +457,13 @@ class Statistical_Calculator(Screen):
 class Homepage(Screen):
     pass            
 
+class Menu(Screen):
+    pass
+
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
 sm.add_widget(Statistical_Calculator(name="Statistical_Calculator"))     
+sm.add_widget(Menu(name="Menu"))     
 sm.current = "Homepage"   
 
 
