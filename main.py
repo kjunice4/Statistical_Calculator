@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
-import numpy
+import numpy as np
 
 #Opening Page
 Builder.load_string("""
@@ -161,6 +161,7 @@ Builder.load_string("""
                     on_release:
                         entry.text = ""
                         perc.text = ""
+                        dev.text = ""
                         list_of_steps.clear_widgets()       
         
             TextInput:
@@ -168,7 +169,7 @@ Builder.load_string("""
                 text: entry.text
                 hint_text: "Enter a group of numbers seperated by a comma"
                 multiline: False
-                font_size: 50
+                font_size: 75
                 size_hint_y: None
                 height: 200
                 padding: 10
@@ -209,7 +210,7 @@ Builder.load_string("""
                 Button:
                     id: sd
                     text: "Standard Deviation"   
-                    font_size: 75
+                    font_size: 60
                     size_hint_y: None
                     background_color: 0, 0 , 1 , 1
                     height: 200
@@ -304,10 +305,10 @@ class Statistical_Calculator(Screen):
                 entry_list[i] = float(entry_list[i])
                 i = i + 1
             
-            mean_output = str(numpy.mean(entry_list))
+            mean_output = str(np.mean(entry_list))
             print("Mean: ",mean_output)
             
-            median_output = str(numpy.median(entry_list))
+            median_output = str(np.median(entry_list))
             print("Median: ",median_output)
             
             #Mean
@@ -364,20 +365,20 @@ class Statistical_Calculator(Screen):
             
             if int(dev) == 1:
                 SD = entry_list
-                SD = str(numpy.std(SD))
+                SD = str(np.std(SD))
                 print("SD",SD)
                 self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
     
             elif int(dev) == 2:
                 SD = entry_list
-                SD = str(float(numpy.mean(entry_list)) + 2 * float(numpy.std(SD)))
+                SD = str(float(np.mean(entry_list)) + 2 * float(np.std(SD)))
                 print("SD",SD)
                 self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
 
             
             elif int(dev) == 3:
                 SD = entry_list
-                SD = str(float(numpy.mean(entry_list)) + 3 * float(numpy.std(SD)))
+                SD = str(float(np.mean(entry_list)) + 3 * float(np.std(SD)))
                 print("SD",SD)
                 self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
 
@@ -407,7 +408,7 @@ class Statistical_Calculator(Screen):
                 entry_list[i] = float(entry_list[i])
                 i = i + 1
             
-            var = str(numpy.var(entry_list))
+            var = str(np.var(entry_list))
             print("Var",var)
             
             self.ids.list_of_steps.add_widget(Label(text= "Variance = " + var ,font_size = 60, size_hint_y= None, height=100))
@@ -442,7 +443,7 @@ class Statistical_Calculator(Screen):
                 entry_list[i] = float(entry_list[i])
                 i = i + 1
             
-            perc = str(numpy.percentile(entry_list,nth))
+            perc = str(np.percentile(entry_list,nth))
             print("perc",perc)
             
             self.ids.list_of_steps.add_widget(Label(text= perc + " is in the " + str(nth) + "th Percentile"  ,font_size = 60, size_hint_y= None, height=100))
