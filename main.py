@@ -167,7 +167,7 @@ Builder.load_string("""
             TextInput:
                 id: entry
                 text: entry.text
-                hint_text: "Enter a group of numbers seperated by a comma"
+                hint_text: "Numbers seperated by a comma"
                 multiline: False
                 font_size: 75
                 size_hint_y: None
@@ -243,7 +243,7 @@ Builder.load_string("""
                 TextInput:
                     id: perc
                     text: perc.text
-                    hint_text: "Enter nth Percentile"
+                    hint_text: "nth Percentile"
                     multiline: False
                     font_size: 60
                     size_hint_y: None
