@@ -367,21 +367,22 @@ class Statistical_Calculator(Screen):
                 SD = entry_list
                 SD = str(np.std(SD))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
-    
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 60, size_hint_y= None, height=100))
+
             elif int(dev) == 2:
                 SD = entry_list
                 SD = str(float(np.mean(entry_list)) + 2 * float(np.std(SD)))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
-
+                self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = ",font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 60, size_hint_y= None, height=100))
             
             elif int(dev) == 3:
                 SD = entry_list
                 SD = str(float(np.mean(entry_list)) + 3 * float(np.std(SD)))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " + SD ,font_size = 60, size_hint_y= None, height=100))
-
+                self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 60, size_hint_y= None, height=100))
                 
             elif int(dev) > 3:
                 self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between 1, 2 or 3" ,font_size = 60, size_hint_y= None, height=100))
