@@ -7,7 +7,6 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 import numpy
-from scipy import stats
 
 #Opening Page
 Builder.load_string("""
@@ -311,31 +310,28 @@ class Statistical_Calculator(Screen):
             median_output = str(numpy.median(entry_list))
             print("Median: ",median_output)
             
-            mode_output = str(stats.mode(entry_list))
-            print("Mode: ",mode_output)
-            
-            comma_index = mode_output.find(",")
-            print("comma_index",comma_index)
-            
-            count_slice = mode_output[comma_index:]
-            print("count_slice",count_slice)
-            count = count_slice.replace(", count=array([","").replace("]))","")
-            print("count",count)
-            
-            mode_output = mode_output[:comma_index]
+            #Mean
+            entry_list_count = []
+            i = 0
+            while i < len(entry_list):
+                print("loop started")
+                print("entry_list",entry_list[i])
+                entry_list_count.append(entry_list.count(entry_list[i]))
+                print("entry_list_count",entry_list_count)
+                i = i + 1
+                
+            print()
+            maximum_count = max(entry_list_count)
+            print("maximum_count",maximum_count)
+            maximum_count_index = entry_list_count.index(maximum_count)
+            print("maximum_count_index",maximum_count_index)
+            mode_output = entry_list[maximum_count_index]
             print("mode_output",mode_output)
-            left_bracket_index = mode_output.rfind("[")
-            print("left_bracket_index",left_bracket_index)
-            mode_output = mode_output[left_bracket_index:].replace("[","").replace("]","").replace(")","")
-            print("mode_output",mode_output)
-            
-            if mode_output[-1] == ".":
-                mode_output = mode_output + "0"
-                print("mode_output",mode_output)
+                
                 
             self.ids.list_of_steps.add_widget(Label(text= "Mean = " + mean_output ,font_size = 60, size_hint_y= None, height=100))
             self.ids.list_of_steps.add_widget(Label(text= "Median = " + median_output ,font_size = 60, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "Mode = " + mode_output + " counted " + count + " times ",font_size = 60, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Mode = " + str(mode_output) + " counted " + str(maximum_count) + " time(s) ",font_size = 60, size_hint_y= None, height=100))
             self.layouts.append(layout)  
         except Exception:
             self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
