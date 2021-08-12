@@ -205,7 +205,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:1 - len(perc.text)] 
+                    input_filter: lambda text, from_undo: text[:1 - len(dev.text)] 
                     
                 Button:
                     id: sd
@@ -385,7 +385,8 @@ class Statistical_Calculator(Screen):
                 self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 60, size_hint_y= None, height=100))
                 
             elif int(dev) > 3:
-                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between 1, 2 or 3" ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between :" ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "1, 2 or 3" ,font_size = 60, size_hint_y= None, height=100))
                 self.layouts.append(layout)
                 
         except Exception:
