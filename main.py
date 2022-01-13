@@ -24,14 +24,24 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 75
+            font_size: 60
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared Statistical Calculator"
+            text: "Statistical Calculator"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
+                
+        Button:
+            font_size: 60
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 200
+            text: "KSquared-math,LLC ©"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left"
 
 """)
 
@@ -448,7 +458,17 @@ class Statistical_Calculator(Screen):
             perc = str(np.percentile(entry_list,nth))
             print("perc",perc)
             
-            self.ids.list_of_steps.add_widget(Label(text= perc + " is in the " + str(nth) + "th Percentile"  ,font_size = 60, size_hint_y= None, height=100))
+            if str(nth)[-1] == "1":
+                nth = str(nth) + "st"
+            elif str(nth)[-1] == "2":
+                nth = str(nth) + "nd"
+            elif str(nth)[-1] == "3":
+                nth = str(nth) + "rd"
+            else:
+                nth = str(nth) + "th"
+            print("nth",nth)
+            
+            self.ids.list_of_steps.add_widget(Label(text= perc + " is in the " + str(nth) + " Percentile"  ,font_size = 60, size_hint_y= None, height=100))
         except Exception:
             self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
             self.layouts.append(layout)
