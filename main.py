@@ -80,6 +80,7 @@ Builder.load_string("""
                 on_release:
                     app.root.current = "Statistical_Calculator"
                     root.manager.transition.direction = "left" 
+                    
             Button:
                 font_size: 75
                 background_color: 0, 0 , 0 , 1
@@ -157,7 +158,7 @@ Builder.load_string("""
                 text: entry.text
                 hint_text: "Numbers seperated by a comma"
                 multiline: False
-                font_size: 75
+                font_size: 60
                 size_hint_y: None
                 height: 200
                 padding: 10
