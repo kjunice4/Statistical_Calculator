@@ -28,7 +28,7 @@ Builder.load_string("""
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "Statistical Calculator"
+            text: "Tap anywhere to continue"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
@@ -38,11 +38,10 @@ Builder.load_string("""
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared-math,LLC ©"
+            text: "KSquared-math,LLC © : Statistical Calculator"
             on_release:
                 app.root.current = "Menu"
-                root.manager.transition.direction = "left"
-
+                root.manager.transition.direction = "left"    	         
 """)
 
 #Menu
@@ -341,17 +340,6 @@ class Statistical_Calculator(Screen):
 
     def __init__(self, **kwargs):
         super(Statistical_Calculator, self).__init__(**kwargs)
-        Window.bind(on_keyboard=self._key_handler)
-
-    def _key_handler(self, instance, key, *args):
-        if key == 27:
-            self.set_previous_screen()
-            return True
-
-    def set_previous_screen(self):
-        if sm.current != "Homepage":
-            sm.transition.direction = 'right'
-            sm.current = "Menu"   
             
     layouts = []
     def mmm(self,entry):
@@ -542,11 +530,20 @@ sm.add_widget(Homepage(name="Homepage"))
 sm.add_widget(Menu(name="Menu"))     
 sm.add_widget(updates(name="updates"))
 sm.add_widget(Statistical_Calculator(name="Statistical_Calculator"))     
-
 sm.current = "Homepage"   
 
 
 class Statistical_Calculator(App):
+    def __init__(self, **kwargs):
+        super(Statistical_Calculator, self).__init__(**kwargs)
+        Window.bind(on_keyboard=self._key_handler)
+    
+    def _key_handler(self, instance, key, *args):
+        print("key:",key)
+        if key == 27:
+            sm.current = sm.current
+            return True
+    
     def build(app):
         return sm
 
