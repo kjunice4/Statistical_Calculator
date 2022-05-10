@@ -284,7 +284,7 @@ Builder.load_string("""
                 Button:
                     id: sd
                     text: "Standard Deviation"   
-                    font_size: '20sp'
+                    font_size: '15sp'
                     size_hint_y: None
                     background_color: 0, 0 , 1 , 1
                     height: 200
@@ -328,7 +328,7 @@ Builder.load_string("""
                 Button:
                     id: percentile
                     text: "Percentile"   
-                    font_size: '20sp'
+                    font_size: '15sp'
                     size_hint_y: None
                     background_color: 0, 0 , 1 , 1
                     height: 200
