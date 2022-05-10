@@ -24,7 +24,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -34,14 +34,24 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
-            height: 200
-            text: "KSquared-Mathematics : Statistical Calculator"
+            height: 100
+            text: "KSquared-Mathematics :"
             on_release:
                 app.root.current = "Menu"
-                root.manager.transition.direction = "left"    	         
+                root.manager.transition.direction = "left"    	     
+                
+        Button:
+            font_size: '20sp'
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 100
+            text: "Statistical Calculator"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left"    	       
 """)
 
 #Menu
@@ -64,14 +74,14 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
                 text: "Menu"
             
             Button:
-                font_size: 75
+                font_size: '20sp'
                 background_color: 0, 0 , 1 , 1
                 size_hint_y: None
                 height:200
@@ -81,7 +91,7 @@ Builder.load_string("""
                     root.manager.transition.direction = "left" 
                     
             Button:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 text: "Visit KSquared-Mathematics"
@@ -90,7 +100,7 @@ Builder.load_string("""
                     webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
             
             Button:
-                font_size: 75
+                font_size: '20sp'
                 background_color: 1, 0, 1, 1
                 size_hint_y: None
                 height: 200
@@ -101,17 +111,17 @@ Builder.load_string("""
                     root.manager.transition.direction = "left"
                     
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
                 text: "Share KSquared-Mathematics"
                     
             Image:
-                source: 'KSquared_QR_code.png'
+                source: 'KSquared_QR.png'
                 size_hint_y: None
-                height: 1000
-                width: 1000
+                height: 800
+                width: 800
 """)
 
 #Updates
@@ -134,7 +144,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 60
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -143,7 +153,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Menu"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 0 , 1 , 1
                 height: 200
@@ -153,14 +163,14 @@ Builder.load_string("""
                     root.manager.transition.direction = "right" 
                     
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
                 text: "Statistical Calculator v0.1"
                 
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -188,7 +198,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -205,7 +215,7 @@ Builder.load_string("""
 
                 Button:
                     text: "Menu"   
-                    font_size: 75
+                    font_size: '20sp'
                     size_hint_y: None
                     height: 200
                     background_color: 0, 0 , 1 , 1
@@ -217,7 +227,7 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Clear All"   
-                    font_size: 75
+                    font_size: '20sp'
                     size_hint_y: None
                     background_color: 1, 0 , 0 , 1
                     height: 200
@@ -233,7 +243,7 @@ Builder.load_string("""
                 text: entry.text
                 hint_text: "Numbers seperated by a comma"
                 multiline: False
-                font_size: 60
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10
@@ -242,7 +252,7 @@ Builder.load_string("""
             Button:
                 id: mmm
                 text: "Mean, Median & Mode"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
                 height: 200
@@ -265,7 +275,7 @@ Builder.load_string("""
                     text: dev.text
                     hint_text: "1,2 or 3 Deviations"
                     multiline: False
-                    font_size: 50
+                    font_size: '20sp'
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -274,7 +284,7 @@ Builder.load_string("""
                 Button:
                     id: sd
                     text: "Standard Deviation"   
-                    font_size: 50
+                    font_size: '20sp'
                     size_hint_y: None
                     background_color: 0, 0 , 1 , 1
                     height: 200
@@ -286,7 +296,7 @@ Builder.load_string("""
             Button:
                 id: var
                 text: "Variance"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
                 height: 200
@@ -309,7 +319,7 @@ Builder.load_string("""
                     text: perc.text
                     hint_text: "nth Percentile"
                     multiline: False
-                    font_size: 50
+                    font_size: '20sp'
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -318,7 +328,7 @@ Builder.load_string("""
                 Button:
                     id: percentile
                     text: "Percentile"   
-                    font_size: 75
+                    font_size: '20sp'
                     size_hint_y: None
                     background_color: 0, 0 , 1 , 1
                     height: 200
@@ -348,7 +358,7 @@ class Statistical_Calculator(Screen):
         self.layouts.append(layout)
 
         try:
-            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = '15sp', size_hint_y= None, height=100))
 
             entry_list = entry.split(",")
             print("entry_list",entry_list)
@@ -383,12 +393,12 @@ class Statistical_Calculator(Screen):
             print("mode_output",mode_output)
                 
                 
-            self.ids.list_of_steps.add_widget(Label(text= "Mean = " + mean_output ,font_size = 50, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "Median = " + median_output ,font_size = 50, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "Mode = " + str(mode_output) + " counted " + str(maximum_count) + " time(s) ",font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Mean = " + mean_output ,font_size = '15sp', size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Median = " + median_output ,font_size = '15sp', size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Mode = " + str(mode_output) + " counted " + str(maximum_count) + " time(s) ",font_size = '15sp', size_hint_y= None, height=100))
             self.layouts.append(layout)  
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = '15sp', size_hint_y= None, height=100))
             self.layouts.append(layout)  
             
     def sd(self,entry):
@@ -400,7 +410,7 @@ class Statistical_Calculator(Screen):
             amp = entry.find("&")
             print("amp:",amp)
             
-            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:amp].replace(" ","").replace(",",", ") ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:amp].replace(" ","").replace(",",", ") ,font_size = '15sp', size_hint_y= None, height=100))
             
             dev = entry[amp+1:]
             print("dev:",dev)
@@ -420,30 +430,30 @@ class Statistical_Calculator(Screen):
                 SD = entry_list
                 SD = str(np.std(SD))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " ,font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation = " ,font_size = '15sp', size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = '15sp', size_hint_y= None, height=100))
 
             elif int(dev) == 2:
                 SD = entry_list
                 SD = str(float(np.mean(entry_list)) + 2 * float(np.std(SD)))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = ",font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Second Standard Deviation = ",font_size = '15sp', size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = '15sp', size_hint_y= None, height=100))
             
             elif int(dev) == 3:
                 SD = entry_list
                 SD = str(float(np.mean(entry_list)) + 3 * float(np.std(SD)))
                 print("SD",SD)
-                self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " ,font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Third Standard Deviation = " ,font_size = '15sp', size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= SD ,font_size = '15sp', size_hint_y= None, height=100))
                 
             elif int(dev) > 3:
-                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between :" ,font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= "1, 2 or 3" ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Standard Deviation must be between :" ,font_size = '15sp', size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "1, 2 or 3" ,font_size = '15sp', size_hint_y= None, height=100))
                 self.layouts.append(layout)
                 
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = '15sp', size_hint_y= None, height=100))
             self.layouts.append(layout)
             
     def var(self,entry):
@@ -453,7 +463,7 @@ class Statistical_Calculator(Screen):
 
         try:
 
-            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry.replace(" ","").replace(",",", ") ,font_size = '15sp', size_hint_y= None, height=100))
 
             entry_list = entry.split(",")
             print("entry_list",entry_list)
@@ -466,9 +476,9 @@ class Statistical_Calculator(Screen):
             var = str(np.var(entry_list))
             print("Var",var)
             
-            self.ids.list_of_steps.add_widget(Label(text= "Variance = " + var ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Variance = " + var ,font_size = '15sp', size_hint_y= None, height=100))
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = '15sp', size_hint_y= None, height=100))
             self.layouts.append(layout)
             
     def perc(self,entry):
@@ -482,7 +492,7 @@ class Statistical_Calculator(Screen):
             percent = entry.find("%")
             print("percent",percent)
             
-            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:percent].replace(" ","").replace(",",", ") ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Entry = " + entry[:percent].replace(" ","").replace(",",", ") ,font_size = '15sp', size_hint_y= None, height=100))
             
             nth = int(entry[percent+1:])
             print("nth",nth)
@@ -511,9 +521,9 @@ class Statistical_Calculator(Screen):
                 nth = str(nth) + "th"
             print("nth",nth)
             
-            self.ids.list_of_steps.add_widget(Label(text= perc + " is in the " + str(nth) + " Percentile"  ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= perc + " is in the " + str(nth) + " Percentile"  ,font_size = '15sp', size_hint_y= None, height=100))
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = '15sp', size_hint_y= None, height=100))
             self.layouts.append(layout)
                 
 class Homepage(Screen):
